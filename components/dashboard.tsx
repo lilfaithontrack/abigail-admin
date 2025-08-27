@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { FileText, Settings, TrendingUp, Calendar } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-  const API_BASE_URL = "http://localhost:5000/api"
+  const API_BASE_URL = "https://api.abigailgeneralcleaningservice.com/api"
 
 interface Blog {
   _id: string

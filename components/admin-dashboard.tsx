@@ -1,17 +1,20 @@
 "use client"
 
 import { useState } from "react"
-import { Crown, LayoutDashboard, FileText, Menu, LogOut, User, Settings } from "lucide-react"
+import { Crown, LayoutDashboard, FileText, Menu, LogOut, User, Settings, FolderOpen } from "lucide-react"
+import { Image } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Dashboard from "./dashboard"
 import BlogManagement from "./blog-management"
 import ServiceManagement from "./service-management"
+import CategoryManagement from "./category-management"
+import GalleryManagement from "./gallery-management"
 
 interface AdminDashboardProps {
   onLogout: () => void
 }
 
-type Section = "dashboard" | "blogs" | "services"
+type Section = "dashboard" | "blogs" | "services" | "categories" | "gallery"
 
 export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   const [activeSection, setActiveSection] = useState<Section>("dashboard")
@@ -26,12 +29,16 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     { id: "dashboard", name: "Dashboard", icon: LayoutDashboard },
     { id: "blogs", name: "Blog Management", icon: FileText },
     { id: "services", name: "Service Management", icon: Settings },
+    { id: "categories", name: "Category Management", icon: FolderOpen },
+    { id: "gallery", name: "Gallery Management", icon: Image },
   ]
 
   const sectionTitles = {
     dashboard: "Dashboard",
     blogs: "Blog Management",
     services: "Service Management",
+    categories: "Category Management",
+    gallery: "Gallery Management",
   }
 
   const renderSection = () => {
@@ -42,6 +49,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         return <BlogManagement />
       case "services":
         return <ServiceManagement />
+      case "categories":
+        return <CategoryManagement />
+        case "gallery":
+          return <GalleryManagement />
       default:
         return <Dashboard />
     }
